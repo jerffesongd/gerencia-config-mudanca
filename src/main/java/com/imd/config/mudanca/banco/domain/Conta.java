@@ -53,6 +53,8 @@ public class Conta {
 		this.dono = dono;
 	} 
 	
-	
+	public String getSaldoFormatado() {
+		return new java.text.DecimalFormat("#,###,##0.00").format(getSaldo());
+	}
 	
 }
