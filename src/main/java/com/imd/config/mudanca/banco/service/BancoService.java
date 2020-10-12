@@ -8,17 +8,18 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.imd.config.mudanca.banco.domain.Conta;
-import com.imd.config.mudanca.banco.helper.Mensagens;
+import com.imd.config.mudanca.banco.mensagem.Mensagens;
 
 @Service
 public class BancoService {
 
 	public static List<Conta> contas = new ArrayList<Conta>();
 	
-	public void visualizarSaldo(Conta conta, BigDecimal valor) {
+	public BigDecimal visualizarSaldo(Conta conta) {
 		
 		validarConta(conta);
 		
+		return conta.getSaldo();
 		
 	}
 
