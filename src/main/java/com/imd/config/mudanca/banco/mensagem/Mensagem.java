@@ -1,13 +1,20 @@
 package com.imd.config.mudanca.banco.mensagem;
 
-public class Mensagem {
+import java.io.Serializable;
 
+public class Mensagem  {
+
+	
 	String message;
 	String tipoMensagem;
 	
 	public Mensagem(String message, String tipoMensagem) {
 		this.message = message;
 		this.tipoMensagem = tipoMensagem;
+	}
+	
+	public Mensagem() {
+		
 	}
 
 	public String getMessage() {

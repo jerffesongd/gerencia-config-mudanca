@@ -9,7 +9,7 @@ public class MensagemHelper {
 
 	private final String  LAYOUT_ATRIBUTO_MENSAGEM = "mensagemSitema";
 	
-	private void addMensagem(RedirectAttributes ra, String message, String tipoMensagem) {
+	public void addMensagem(RedirectAttributes ra, String message, String tipoMensagem) {
 		ra.addFlashAttribute(LAYOUT_ATRIBUTO_MENSAGEM, new Mensagem(message, tipoMensagem));
 	}
 
