@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import com.imd.config.mudanca.banco.domain.Conta;
 
-public class Debito implements Operacao{
+public class Debito implements OperacaoCommand{
 
 	@Override
 	public BigDecimal executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor) {
