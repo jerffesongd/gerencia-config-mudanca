@@ -2,6 +2,8 @@ package com.imd.config.mudanca.banco.service;
 
 import java.math.BigDecimal;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.imd.config.mudanca.banco.helper.Mensagens;
 @Service
 public class BancoService {
 
+	public static List<Conta> contas = new ArrayList<Conta>();
 	
 	public void visualizarSaldo(Conta conta, BigDecimal valor) {
 		
@@ -50,6 +53,12 @@ public class BancoService {
 	}
 
 	private boolean contaExiste(Conta conta) {
+		
+		for (Conta c : contas) {
+			if(conta.getNumero().equalsIgnoreCase(c.getNumero())) {
+				return true;
+			}
+		}
 		
 		return false;
 	}
