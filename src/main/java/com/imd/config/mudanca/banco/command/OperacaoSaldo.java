@@ -9,8 +9,7 @@ public class OperacaoSaldo implements OperacaoCommand{
 	
 	@Override
 	public BigDecimal executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor, Date dataOperacao) {
-		// TODO Auto-generated method stub
-		return null;
+		return contaOrigem.getSaldo();
 	}
 
 }
