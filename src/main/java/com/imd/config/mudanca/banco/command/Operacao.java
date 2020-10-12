@@ -6,5 +6,5 @@ import com.imd.config.mudanca.banco.domain.Conta;
 
 public interface Operacao {
 
-		public double executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor);
+		public BigDecimal executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor);
 }

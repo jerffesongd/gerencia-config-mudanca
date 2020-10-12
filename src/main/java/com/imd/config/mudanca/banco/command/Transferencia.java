@@ -7,9 +7,10 @@ import com.imd.config.mudanca.banco.domain.Conta;
 public class Transferencia implements Operacao{
 
 	@Override
-	public double executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor) {
+	public BigDecimal executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor) {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
+	
 }
