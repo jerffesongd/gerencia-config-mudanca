@@ -9,8 +9,11 @@ public class Transferencia implements OperacaoCommand{
 
 	@Override
 	public BigDecimal executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor, Date dataOperacao) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
+		contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
+		
+		return valor;
 	}
 
 	

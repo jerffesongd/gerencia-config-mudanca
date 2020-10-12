@@ -40,7 +40,14 @@ public class BancoService {
 		}
 		
 	}
-
+	
+	private void validarOperacaoTransferencia(Conta contaOrigem, Conta contaDestino, BigDecimal valor) {
+		
+		validarConta(contaOrigem);
+		validarOperacaoSaque(contaOrigem, valor);
+		validarConta(contaDestino);
+		
+	}
 	@PostConstruct
 	public static void carregarContas() {
 		
