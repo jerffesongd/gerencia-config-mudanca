@@ -10,9 +10,9 @@ public class Credito implements OperacaoCommand{
 	@Override
 	public BigDecimal executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor, Date dataOperacao) {
 		
-		contaOrigem.setSaldo(contaOrigem.getSaldo().add(valor));
+		contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
 		
-		return contaOrigem.getSaldo();
+		return contaDestino.getSaldo();
 	}
 
 }
