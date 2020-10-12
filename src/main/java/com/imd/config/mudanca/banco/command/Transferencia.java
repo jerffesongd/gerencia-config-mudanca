@@ -13,7 +13,7 @@ public class Transferencia implements OperacaoCommand{
 		contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
 		contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
 		
-		return valor;
+		return contaOrigem.getSaldo();
 	}
 
 	
