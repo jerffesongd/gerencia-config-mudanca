@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.imd.config.mudanca.banco.domain.Conta;
 
-public class Credito implements OperacaoCommand{
+public class OperacaoCredito implements OperacaoCommand{
 
 	@Override
 	public BigDecimal executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor, Date dataOperacao) {
