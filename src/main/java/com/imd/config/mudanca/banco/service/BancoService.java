@@ -3,12 +3,15 @@ package com.imd.config.mudanca.banco.service;
 import java.math.BigDecimal;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 
+import com.imd.config.mudanca.banco.command.OperacaoCommand;
+import com.imd.config.mudanca.banco.command.OperacaoSaldo;
 import com.imd.config.mudanca.banco.domain.Conta;
 import com.imd.config.mudanca.banco.domain.Pessoa;
 import com.imd.config.mudanca.banco.mensagem.Mensagens;
@@ -17,14 +20,6 @@ import com.imd.config.mudanca.banco.mensagem.Mensagens;
 public class BancoService {
 
 	public static List<Conta> contas = new ArrayList<Conta>();
-	
-	public BigDecimal visualizarSaldo(Conta conta) {
-		
-		validarConta(conta);
-		
-		return conta.getSaldo();
-		
-	}
 
 	private void validarOperacaoSaque(Conta conta, BigDecimal valor) {
 		
@@ -91,6 +86,10 @@ public class BancoService {
 		}
 		
 		return null;
+	}
+
+	public BigDecimal executarOperacao(Conta origem, Conta destino, BigDecimal valor, Date dataOperacao, OperacaoCommand operacaoCommand) {
+		return operacaoCommand.executar(origem, destino, valor, dataOperacao);
 	}
 	
 	
