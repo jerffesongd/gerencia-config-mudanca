@@ -11,7 +11,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import com.imd.config.mudanca.banco.command.OperacaoCommand;
-import com.imd.config.mudanca.banco.command.OperacaoSaldo;
 import com.imd.config.mudanca.banco.domain.Conta;
 import com.imd.config.mudanca.banco.domain.Pessoa;
 import com.imd.config.mudanca.banco.mensagem.Mensagens;
@@ -21,7 +20,7 @@ public class BancoService {
 
 	public static List<Conta> contas = new ArrayList<Conta>();
 
-	private void validarOperacaoSaque(Conta conta, BigDecimal valor) {
+	public void validarOperacaoSaque(Conta conta, BigDecimal valor) {
 		
 		validarConta(conta);
 		
@@ -32,8 +31,6 @@ public class BancoService {
 		if (valor.compareTo(new BigDecimal("0")) == 0 || valor.compareTo(new BigDecimal("0"))  == -1) {
 			throw new InvalidParameterException(Mensagens.VALOR_TRANSACAO_INVALIDO);
 		}
-		
-		
 		
 		if (conta.getSaldo().compareTo(valor) == -1) {
 			throw new InvalidParameterException(Mensagens.SALDO_INSUFICIENTE);
@@ -63,7 +60,7 @@ public class BancoService {
 		
 	}
 	
-	private void validarConta(Conta conta) {
+	public void validarConta(Conta conta) {
 		
 		if (conta == null) {
 			throw new InvalidParameterException(Mensagens.CONTA_NAO_EXISTE);

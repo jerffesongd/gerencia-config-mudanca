@@ -1,6 +1,5 @@
 package com.imd.config.mudanca.banco.controller;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +25,15 @@ public class OperacoesController {
 	@GetMapping("/saldo")
 	public ResponseEntity getSaldoConta() {
 		
-		Conta c = ((Conta) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-		return new ResponseEntity(bancoService.executarOperacao(c, null, null, new Date() , new OperacaoSaldo()), HttpStatus.OK);
-		
+		try {
+			
+			Conta c = ((Conta) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+			return new ResponseEntity(bancoService.executarOperacao(null, null, null, new Date() , new OperacaoSaldo()), HttpStatus.OK);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	

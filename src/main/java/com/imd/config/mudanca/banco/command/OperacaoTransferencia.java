@@ -9,16 +9,23 @@ import com.imd.config.mudanca.banco.domain.Conta;
 import com.imd.config.mudanca.banco.service.BancoService;
 
 @Component
-public class OperacaoSaldo implements OperacaoCommand{
-	
+public class OperacaoTransferencia implements OperacaoCommand{
 
 	private BancoService bancoService = new BancoService();
 	
 	@Override
 	public BigDecimal executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor, Date dataOperacao) {
 		
+		
 		bancoService.validarConta(contaOrigem);
-		return contaOrigem.getSaldo();
+		bancoService.validarConta(contaDestino);
+		bancoService.validarOperacaoSaque(contaOrigem, valor);
+		
+		contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
+		contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
+		
+		return valor;
 	}
 
+	
 }
