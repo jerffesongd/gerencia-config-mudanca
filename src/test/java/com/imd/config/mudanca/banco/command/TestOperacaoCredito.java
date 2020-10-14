@@ -10,8 +10,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.imd.config.mudanca.banco.mensagem.Mensagens;
-import com.imd.config.mudanca.banco.service.BancoService;
 
+import com.imd.config.mudanca.banco.service.BancoService;
 
 class TestOperacaoCredito{
 	
