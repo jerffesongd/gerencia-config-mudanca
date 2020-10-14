@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 import java.security.InvalidParameterException;
 import java.util.Date;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.imd.config.mudanca.banco.domain.Conta;
-import com.imd.config.mudanca.banco.domain.Pessoa;
+import com.imd.config.mudanca.banco.mensagem.Mensagens;
 import com.imd.config.mudanca.banco.service.BancoService;
 
 
@@ -17,9 +17,13 @@ class TestOperacaoDebito{
 	
 	BancoService bs = new BancoService ();
 		
+	@BeforeAll
+	public static void beforeAll() {
+		BancoService.carregarContas();
+	}
+	
 	@Test
 	public void debitarSucesso1(){
-		bs.carregarContas();
 		bs.executarOperacao(bs.getConta("001"), null, new BigDecimal(75), new Date() , new OperacaoDebito());		
 		assertEquals(new BigDecimal(925), bs.getConta("001").getSaldo());
 	}
@@ -32,26 +36,60 @@ class TestOperacaoDebito{
 	
 	@Test
 	public void debitarComZeroInsucesso() {
-		bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(0), new Date() , new OperacaoDebito());		
-		assertEquals(new BigDecimal(2050), bs.getConta("002").getSaldo());
+		
+		Exception exception = assertThrows(InvalidParameterException.class, () -> {
+			bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(0), new Date() , new OperacaoDebito());		
+	    });
+	 
+		String expectedMessage = Mensagens.VALOR_TRANSACAO_INVALIDO;
+	    String actualMessage = exception.getMessage();		
+		
+	    assertTrue(actualMessage.equals(expectedMessage));
+		
 	}
 	
 	@Test
 	public void debitarComNegativoInsucesso() {
-		bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(-50), new Date() , new OperacaoDebito());		
-		assertEquals(new BigDecimal(2050), bs.getConta("002").getSaldo());
+		
+		Exception exception = assertThrows(InvalidParameterException.class, () -> {
+			bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(-50), new Date() , new OperacaoDebito());		
+		});
+	 
+		String expectedMessage = Mensagens.VALOR_TRANSACAO_INVALIDO;
+	    String actualMessage = exception.getMessage();		
+		
+	    assertTrue(actualMessage.equals(expectedMessage));
+
 	}
 	
 	@Test
 	public void debitarComValorSuperiorSaldoInsucesso() {
-		bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(2051), new Date() , new OperacaoDebito());		
-		assertEquals(new BigDecimal(2050), bs.getConta("002").getSaldo());
+		
+		
+		Exception exception = assertThrows(InvalidParameterException.class, () -> {
+			bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(2051), new Date() , new OperacaoDebito());		
+		});
+	 
+		String expectedMessage = Mensagens.SALDO_INSUFICIENTE;
+	    String actualMessage = exception.getMessage();		
+		
+	    assertTrue(actualMessage.equals(expectedMessage));
+		
 	}
 	
 	@Test
 	public void debitarComContaInexistenteInsucesso() {
-		bs.executarOperacao(bs.getConta("004"), null, new BigDecimal(2051), new Date() , new OperacaoDebito());		
-		assertEquals(new BigDecimal(2050), bs.getConta("004").getSaldo());
+		
+		
+		Exception exception = assertThrows(InvalidParameterException.class, () -> {
+			bs.executarOperacao(bs.getConta("004"), null, new BigDecimal(2051), new Date() , new OperacaoDebito());		
+		});
+	 
+		String expectedMessage = Mensagens.CONTA_NAO_EXISTE;
+	    String actualMessage = exception.getMessage();		
+		
+	    assertTrue(actualMessage.equals(expectedMessage));
+		
 	}
 
 }
