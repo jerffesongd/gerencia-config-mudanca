@@ -3,16 +3,12 @@ package com.imd.config.mudanca.banco.command;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import java.security.InvalidParameterException;
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
-import com.imd.config.mudanca.banco.domain.Conta;
-import com.imd.config.mudanca.banco.domain.Pessoa;
 import com.imd.config.mudanca.banco.service.BancoService;
 
-import junit.framework.TestCase;
 
 class TestOperacaoCredito{
 	

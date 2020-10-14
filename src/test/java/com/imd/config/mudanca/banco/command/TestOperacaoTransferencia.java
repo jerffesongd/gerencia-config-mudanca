@@ -12,8 +12,6 @@ import com.imd.config.mudanca.banco.domain.Conta;
 import com.imd.config.mudanca.banco.domain.Pessoa;
 import com.imd.config.mudanca.banco.service.BancoService;
 
-import junit.framework.TestCase;
-
 class TestOperacaoTransferencia{
 	
 	BancoService bs = new BancoService ();
