@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+	
+	<div th:if="${mensagemSitema}">
+		<span th:text="${mensagemSitema.message}">
+		</span>
+	</div>
+	
+	<div class="form-group mt-2"  th:if="${param.error} != null" >
+		<div class="alert alert-dismissable" th:classappend="'alert-danger'">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" style="color: #424242; font-size: 15px;"></span>
+	    </div>
+	</div>
+	
+	<form th:action="@{login}" method="post">
+		<div>
+			<label for="login">Nº conta</label>
+			<input id="username" name="username">
+		</div>
+		<div>
+			<label for="password">Senha</label>
+			<input name="password" id="password" type="password">
+		</div>
+		
+		<div>
+			<button type="submit">Entrar</button>
+		</div>
+		
+	</form>
+
+</body>
+</html>

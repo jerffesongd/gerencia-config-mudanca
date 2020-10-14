@@ -9,6 +9,16 @@ public class Pessoa {
 	
 	private List<Conta> contas;
 	
+	
+	
+	public Pessoa() {
+		super();
+	}
+	public Pessoa(String nome, String cpf) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+	}
 	public String getNome() {
 		return nome;
 	}
