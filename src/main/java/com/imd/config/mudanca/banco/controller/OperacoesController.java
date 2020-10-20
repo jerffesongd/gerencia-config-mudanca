@@ -1,5 +1,7 @@
 package com.imd.config.mudanca.banco.controller;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +25,23 @@ public class OperacoesController {
 	private BancoService bancoService;
 	
 	@GetMapping("/saldo")
-	public ResponseEntity getSaldoConta() {
+	public ResponseEntity<String> getSaldoConta() {
 		
 		try {
 			
 			Conta c = ((Conta) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-			return new ResponseEntity(bancoService.executarOperacao(null, null, null, new Date() , new OperacaoSaldo()), HttpStatus.OK);
+			BigDecimal saldo = bancoService.executarOperacao(c, null, null, new Date() , new OperacaoSaldo());
+			
+			return new ResponseEntity<String>("R$ " + getSaldoFormatado(saldo), HttpStatus.OK);
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	private String getSaldoFormatado(BigDecimal valor) {
+		return new DecimalFormat("#,###,##0.00").format(valor);
 	}
 	
 	

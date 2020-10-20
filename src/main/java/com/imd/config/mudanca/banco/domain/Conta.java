@@ -1,9 +1,14 @@
 package com.imd.config.mudanca.banco.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Conta {
+public class Conta implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String agencia;
 	private String numero;
 	private String senha;
@@ -53,8 +58,6 @@ public class Conta {
 		this.dono = dono;
 	} 
 	
-	public String getSaldoFormatado() {
-		return new java.text.DecimalFormat("#,###,##0.00").format(getSaldo());
-	}
+	
 	
 }

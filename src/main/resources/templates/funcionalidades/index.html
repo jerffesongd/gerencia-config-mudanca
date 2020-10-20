@@ -1,15 +1,91 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="~{fragments/layout-sistema}">
+
 <head>
 <meta charset="UTF-8">
 <title>O que deseja fazer</title>
 </head>
 <body>
 
-	<a th:href="@{/operacao/saldo}">Saldo</a>
-	<a href="#">Tranferencia</a>
-	<a href="#">Credito</a>
-	<a href="#">Debito</a>
+	<th:block layout:fragment="content">
+
+		<div class="content d-flex justify-content-center">
+			<div class="card-login align-self-center">
+				<div class="d-flex justify-content-center h-25">
+					<span class="align-self-center p-3 "><span id="valor-saldo"></span></span>
+				</div>
+				
+				<div class="row">
+					<div  class="col-12 col-sm-6 col-md-4 p-1">
+						<a href="#" title="Crédito">
+							<div class="btn-operacao d-flex justify-content-center align-items-center">
+								<i class="fas fa-hand-holding-usd"></i>
+							</div>
+						</a>
+					</div>
+					<div  class="col-12 col-sm-6 col-md-4 p-1">
+						<a href="#" title="Dedito">
+							<div class="btn-operacao d-flex justify-content-center align-items-center">
+								<i class="fas fa-hand-holding-usd icon-debito "></i>
+							</div>
+						</a>
+					</div>
+					<div  class="col-12 col-sm-6 col-md-4 p-1">
+						<a href="#" title="Tranferência">
+							<div class="btn-operacao d-flex justify-content-center align-items-center">
+								<i class="fas fa-comments-dollar"></i>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row"></div>
+	</th:block>
+
+	<th:block layout:fragment="js">
+
+		<script>
+			$(document).ready(function() {
+				obterSaldo();
+			});
+
+			function obterSaldo() {
+
+				$.ajax({
+					type : 'get',
+					url : "operacao/saldo",
+
+					success : function(data) {
+						try {
+
+							$('#valor-saldo').html('Saldo: ' + data);
+
+						} catch (e) {
+							$('#valor-saldo').html("Erro!");
+							$('#valor-saldo').css({
+								color : "red"
+							});
+						}
+
+					},
+					error : function(erro) {
+						$('#valor-saldo').html("Erro!");
+						$('#valor-saldo').css({
+							color : "red"
+						});
+					}
+				});
+
+			}
+		</script>
+
+	</th:block>
 
 </body>
 </html>

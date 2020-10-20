@@ -1,7 +1,5 @@
 package com.imd.config.mudanca.banco.mensagem;
 
-import java.io.Serializable;
-
 public class Mensagem  {
 
 	
