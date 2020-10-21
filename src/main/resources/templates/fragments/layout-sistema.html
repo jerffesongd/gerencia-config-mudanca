@@ -33,8 +33,8 @@
 
 	<!-- Page Content -->
 	<div id="content" class="container-fluid">
-		<div th:if="${mensagemSitema != null}">
-			<span th:text="${mensagemSitema.conteudo}"></span>
+		<div th:if="${mensagemSitema != null}" th:classappend="'alert alert-dismissable alert-' + ${mensagemSitema.tipoMensagem}">
+			<span th:text="${mensagemSitema.message}"></span>
 		</div>
 		
 		<th:block layout:fragment="content"></th:block>

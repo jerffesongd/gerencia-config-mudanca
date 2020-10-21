@@ -26,6 +26,10 @@
 	width: 3em;
 }
 
+.svg-inline--fa.fa-w-16 {
+	width: 3em;
+}
+
 .icon-debito {
 	transform: rotate(180deg);
 }

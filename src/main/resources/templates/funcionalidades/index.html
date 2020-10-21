@@ -19,24 +19,31 @@
 				</div>
 				
 				<div class="row">
-					<div  class="col-12 col-sm-6 col-md-4 p-1">
-						<a href="#" title="Crédito">
+					<div  class="col-12 col-sm-6 col-md-3 p-1">
+						<a th:href="@{'/operacao/credito'}" title="Crédito">
 							<div class="btn-operacao d-flex justify-content-center align-items-center">
 								<i class="fas fa-hand-holding-usd"></i>
 							</div>
 						</a>
 					</div>
-					<div  class="col-12 col-sm-6 col-md-4 p-1">
-						<a href="#" title="Dedito">
+					<div  class="col-12 col-sm-6 col-md-3 p-1">
+						<a th:href="@{'/operacao/debito'}" title="Dedito">
 							<div class="btn-operacao d-flex justify-content-center align-items-center">
 								<i class="fas fa-hand-holding-usd icon-debito "></i>
 							</div>
 						</a>
 					</div>
-					<div  class="col-12 col-sm-6 col-md-4 p-1">
-						<a href="#" title="Tranferência">
+					<div  class="col-12 col-sm-6 col-md-3 p-1">
+						<a th:href="@{'/operacao/transferencia'}" title="Tranferência">
 							<div class="btn-operacao d-flex justify-content-center align-items-center">
 								<i class="fas fa-comments-dollar"></i>
+							</div>
+						</a>
+					</div>
+					<div  class="col-12 col-sm-6 col-md-3 p-1">
+						<a href="logout" title="Sair">
+							<div class="btn-operacao d-flex justify-content-center align-items-center">
+								<i class="fas fa-power-off text-danger"></i>
 							</div>
 						</a>
 					</div>

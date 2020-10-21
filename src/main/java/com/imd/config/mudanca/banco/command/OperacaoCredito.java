@@ -16,8 +16,6 @@ public class OperacaoCredito implements OperacaoCommand{
 	@Override
 	public BigDecimal executar(Conta contaOrigem, Conta contaDestino, BigDecimal valor, Date dataOperacao) {
 		
-
-		bancoService.validarOperacaoSaque(contaOrigem, valor);
 		contaOrigem.setSaldo(contaOrigem.getSaldo().add(valor));
 		
 		return contaOrigem.getSaldo();
