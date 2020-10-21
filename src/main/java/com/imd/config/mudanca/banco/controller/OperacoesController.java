@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.imd.config.mudanca.banco.command.OperacaoCredito;
 import com.imd.config.mudanca.banco.command.OperacaoDebito;
 import com.imd.config.mudanca.banco.command.OperacaoSaldo;
+import com.imd.config.mudanca.banco.command.OperacaoTransferencia;
 import com.imd.config.mudanca.banco.domain.Conta;
 import com.imd.config.mudanca.banco.mensagem.MensagemHelper;
 import com.imd.config.mudanca.banco.mensagem.Mensagens;
@@ -112,6 +113,40 @@ public class OperacoesController {
 		
 		return modelAndView;
 	}
+	
+	
+	
+	@GetMapping("/transferencia")
+	public ModelAndView tranferirEntreConta() {
+		
+		ModelAndView modelAndView = new ModelAndView("/funcionalidades/transferencia");
+		
+		return modelAndView;
+	}
+	
+	@PostMapping("/transferencia")
+	public ModelAndView executarTransferenciaConta( @RequestParam("contaDestino") String conta, @RequestParam("valor") String valor, RedirectAttributes ra) {
+		
+		ModelAndView modelAndView = new ModelAndView(new RedirectView("/operacoes", true));
+		
+		
+		try {
+			
+			BigDecimal valorDebitar = new BigDecimal(valor);
+			Conta c = ((Conta) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+			Conta contaDestino = bancoService.getConta(conta);
+			bancoService.executarOperacao(c, contaDestino, valorDebitar, new Date() , new OperacaoTransferencia());
+			
+			mensagemHelper.addMensagem(ra, Mensagens.OPERACAO_REALIZADA_COM_SUCESSO, TipoMensagem.SUCESSO);
+
+		}catch (Exception e) {
+			e.printStackTrace();
+			mensagemHelper.addMensagem(ra, e.getMessage(), TipoMensagem.ERRO);
+		}
+		
+		return modelAndView;
+	}
+	
 	
 	
 	private String getSaldoFormatado(BigDecimal valor) {

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="~{fragments/layout-sistema}">
+
+<head>
+<meta charset="UTF-8">
+<title>O que deseja fazer</title>
+</head>
+<body>
+
+	<th:block layout:fragment="content">
+
+				<div class="content d-flex justify-content-center">
+			<div class="card-login align-self-center">
+				<div class="d-flex justify-content-center h-25">
+					<div th:if="${mensagemSitema}">
+						<span th:text="${mensagemSitema.message}"> </span>
+					</div>
+
+					<div class="form-group mt-2" th:if="${param.error} != null">
+						<div class="alert alert-dismissable"
+							th:classappend="'alert-danger'">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-hidden="true">&times;</button>
+							<span
+								th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+								style="color: #424242; font-size: 15px;"></span>
+						</div>
+					</div>
+				</div>
+
+				<form th:action="@{transferencia}" method="post">
+				
+					<div class="form-group">
+						<label for="password">Conta de Destino</label> <input class="form-control"
+							name="contaDestino" type="text">
+					</div>
+					<div class="form-group">
+						<label for="password">Valor (R$)</label> <input class="form-control"
+							name="valor" type="number">
+					</div>
+
+					<div class="text-right">
+						<button class="btn btn-primary" type="submit">Executar</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+		<div class="row"></div>
+	</th:block>
+
+	<th:block layout:fragment="js">
+
+		<script>
+			$(document).ready(function() {
+				obterSaldo();
+			});
+
+			function obterSaldo() {
+
+				$.ajax({
+					type : 'get',
+					url : "operacao/saldo",
+
+					success : function(data) {
+						try {
+
+							$('#valor-saldo').html('Saldo: ' + data);
+
+						} catch (e) {
+							$('#valor-saldo').html("Erro!");
+							$('#valor-saldo').css({
+								color : "red"
+							});
+						}
+
+					},
+					error : function(erro) {
+						$('#valor-saldo').html("Erro!");
+						$('#valor-saldo').css({
+							color : "red"
+						});
+					}
+				});
+
+			}
+		</script>
+
+	</th:block>
+
+</body>
+</html>
