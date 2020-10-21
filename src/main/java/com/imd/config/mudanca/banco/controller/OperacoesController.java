@@ -82,7 +82,36 @@ public class OperacoesController {
 		
 		return modelAndView;
 	}
+	
+	@GetMapping("/credito")
+	public ModelAndView creditarConta() {
+		
+		ModelAndView modelAndView = new ModelAndView("/funcionalidades/credito");
+		
+		return modelAndView;
+	}
+	
+	@PostMapping("/credito")
+	public ModelAndView executarCreditoConta( @RequestParam("valor") String valor, RedirectAttributes ra) {
+		
+		ModelAndView modelAndView = new ModelAndView(new RedirectView("/operacoes", true));
+		
+		
+		try {
+			
+			BigDecimal valorDebitar = new BigDecimal(valor);
+			Conta c = ((Conta) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+			bancoService.executarOperacao(c, null, valorDebitar, new Date() , new OperacaoCredito());
+			
+			mensagemHelper.addMensagem(ra, Mensagens.OPERACAO_REALIZADA_COM_SUCESSO, TipoMensagem.SUCESSO);
 
+		}catch (Exception e) {
+			e.printStackTrace();
+			mensagemHelper.addMensagem(ra, e.getMessage(), TipoMensagem.ERRO);
+		}
+		
+		return modelAndView;
+	}
 	
 	
 	private String getSaldoFormatado(BigDecimal valor) {
