@@ -17,6 +17,9 @@
 				<div class="d-flex justify-content-center h-25">
 					<span class="align-self-center p-3 "><span id="valor-saldo"></span></span>
 				</div>
+				<div class="d-flex justify-content-center">
+					<span class="align-self-center p-3 "><span id="valor-bonus"></span></span>
+				</div>
 				
 				<div class="row">
 					<div  class="col-12 col-sm-6 col-md-3 p-1">
@@ -84,6 +87,39 @@
 					error : function(erro) {
 						$('#valor-saldo').html("Erro!");
 						$('#valor-saldo').css({
+							color : "red"
+						});
+					}
+				});
+
+			}
+			
+			$(document).ready(function() {
+				obterBonus();
+			});
+
+			function obterBonus() {
+
+				$.ajax({
+					type : 'get',
+					url : "operacao/bonus",
+
+					success : function(data) {
+						try {
+
+							$('#valor-bonus').html('Bonus: ' + data);
+
+						} catch (e) {
+							$('#valor-bonus').html("Erro!");
+							$('#valor-bonus').css({
+								color : "red"
+							});
+						}
+
+					},
+					error : function(erro) {
+						$('#valor-bonus').html("Erro!");
+						$('#valor-bonus').css({
 							color : "red"
 						});
 					}
