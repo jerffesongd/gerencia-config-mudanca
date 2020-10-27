@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.imd.config.mudanca.banco.command.OperacaoCredito;
+import com.imd.config.mudanca.banco.command.OperacaoDeposito;
 import com.imd.config.mudanca.banco.command.OperacaoDebito;
 import com.imd.config.mudanca.banco.command.OperacaoSaldo;
 import com.imd.config.mudanca.banco.command.OperacaoTransferencia;
@@ -84,16 +84,16 @@ public class OperacoesController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/credito")
-	public ModelAndView creditarConta() {
+	@GetMapping("/deposito")
+	public ModelAndView depositarConta() {
 		
-		ModelAndView modelAndView = new ModelAndView("/funcionalidades/credito");
+		ModelAndView modelAndView = new ModelAndView("/funcionalidades/deposito");
 		
 		return modelAndView;
 	}
 	
-	@PostMapping("/credito")
-	public ModelAndView executarCreditoConta( @RequestParam("valor") String valor, RedirectAttributes ra) {
+	@PostMapping("/deposito")
+	public ModelAndView executarDepositoConta( @RequestParam("valor") String valor, RedirectAttributes ra) {
 		
 		ModelAndView modelAndView = new ModelAndView(new RedirectView("/operacoes", true));
 		
@@ -102,7 +102,7 @@ public class OperacoesController {
 			
 			BigDecimal valorDebitar = new BigDecimal(valor);
 			Conta c = ((Conta) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-			bancoService.executarOperacao(c, null, valorDebitar, new Date() , new OperacaoCredito());
+			bancoService.executarOperacao(c, null, valorDebitar, new Date() , new OperacaoDeposito());
 			
 			mensagemHelper.addMensagem(ra, Mensagens.OPERACAO_REALIZADA_COM_SUCESSO, TipoMensagem.SUCESSO);
 

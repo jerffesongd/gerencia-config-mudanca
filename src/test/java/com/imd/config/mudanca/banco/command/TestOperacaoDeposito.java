@@ -13,7 +13,7 @@ import com.imd.config.mudanca.banco.mensagem.Mensagens;
 
 import com.imd.config.mudanca.banco.service.BancoService;
 
-class TestOperacaoCredito{
+class TestOperacaoDeposito{
 	
 	BancoService bs = new BancoService ();
 	
@@ -23,22 +23,22 @@ class TestOperacaoCredito{
 	}
 	
 	@Test
-	public void creditarSucesso1() {
-		bs.executarOperacao(bs.getConta("001"), null, new BigDecimal(50), new Date() , new OperacaoCredito());		
+	public void depositarSucesso1() {
+		bs.executarOperacao(bs.getConta("001"), null, new BigDecimal(50), new Date() , new OperacaoDeposito());		
 		assertEquals(new BigDecimal(1050), bs.getConta("001").getSaldo());
 	}
 	
 	@Test
-	public void creditarSucesso2() {
-		bs.executarOperacao(bs.getConta("001"), null, new BigDecimal(2), new Date() , new OperacaoCredito());		
+	public void depositarSucesso2() {
+		bs.executarOperacao(bs.getConta("001"), null, new BigDecimal(2), new Date() , new OperacaoDeposito());		
 		assertEquals(new BigDecimal(1052), bs.getConta("001").getSaldo());
 	}
 	
 	@Test
-	public void creditarComZeroInsucesso() {
+	public void depositarComZeroInsucesso() {
 		
 		Exception exception = assertThrows(InvalidParameterException.class, () -> {
-			bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(0), new Date() , new OperacaoCredito());
+			bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(0), new Date() , new OperacaoDeposito());
 	    });
 	 
 		String expectedMessage = Mensagens.VALOR_TRANSACAO_INVALIDO;
@@ -48,10 +48,10 @@ class TestOperacaoCredito{
 	}
 	
 	@Test
-	public void creditarComNegativoInsucesso() {
+	public void depositarComNegativoInsucesso() {
 		
 		Exception exception = assertThrows(InvalidParameterException.class, () -> {
-			bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(-50), new Date() , new OperacaoCredito());	
+			bs.executarOperacao(bs.getConta("002"), null, new BigDecimal(-50), new Date() , new OperacaoDeposito());	
 	    });
 	 
 		String expectedMessage = Mensagens.VALOR_TRANSACAO_INVALIDO;
@@ -62,11 +62,11 @@ class TestOperacaoCredito{
 	}
 	
 	@Test
-	public void creditarComContaInexistenteInsucesso() {
+	public void depositarComContaInexistenteInsucesso() {
 		
 		
 		Exception exception = assertThrows(InvalidParameterException.class, () -> {
-			bs.executarOperacao(bs.getConta("003"), null, new BigDecimal(-50), new Date() , new OperacaoCredito());	
+			bs.executarOperacao(bs.getConta("003"), null, new BigDecimal(-50), new Date() , new OperacaoDeposito());	
 	    });
 	 
 		String expectedMessage = Mensagens.CONTA_NAO_EXISTE;
