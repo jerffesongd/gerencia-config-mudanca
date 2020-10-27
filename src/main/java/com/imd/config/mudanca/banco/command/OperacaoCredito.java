@@ -18,7 +18,7 @@ public class OperacaoCredito implements OperacaoCommand{
 				
 		contaOrigem.setSaldo(contaOrigem.getSaldo().add(valor));
 		contaOrigem.setBonus(contaOrigem.getBonus().add(valor.multiply(new BigDecimal (0.01))));
-								
+		contaOrigem.setSaldo(contaOrigem.getSaldo().add(valor.multiply(new BigDecimal (0.01))));						
 		return contaOrigem.getSaldo();
 		
 	}
