@@ -44,8 +44,8 @@ public class BancoService {
 		if (contas.isEmpty()) {
 			Pessoa p1 = new Pessoa("Jerffeson Gomes", "111.111.111-11");
 			Pessoa p2 = new Pessoa("Joicy Daliane", "222.222.222-22");
-			Conta c1 = new Conta("0001", "001", "123", new BigDecimal(1000), p1);
-			Conta c2 = new Conta("0001", "002", "123", new BigDecimal(2000), p2);
+			Conta c1 = new Conta("0001", "001", "123", new BigDecimal(1000), p1, new BigDecimal(0));
+			Conta c2 = new Conta("0001", "002", "123", new BigDecimal(2000), p2, new BigDecimal(0));
 			
 			contas.add(c1);
 			contas.add(c2);

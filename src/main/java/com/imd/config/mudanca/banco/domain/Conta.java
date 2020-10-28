@@ -14,18 +14,20 @@ public class Conta implements Serializable {
 	private String senha;
 	private BigDecimal saldo;
 	private Pessoa dono;
+	private BigDecimal bonus;
 	
 	
 	public Conta() {
 		super();
 	}
-	public Conta(String agencia, String numero, String senha, BigDecimal saldo, Pessoa dono) {
+	public Conta(String agencia, String numero, String senha, BigDecimal saldo, Pessoa dono, BigDecimal bonus) {
 		super();
 		this.agencia = agencia;
 		this.numero = numero;
 		this.senha = senha;
 		this.saldo = saldo;
 		this.dono = dono;
+		this.bonus = bonus;
 	}
 	public String getAgencia() {
 		return agencia;
@@ -56,6 +58,12 @@ public class Conta implements Serializable {
 	}
 	public void setDono(Pessoa dono) {
 		this.dono = dono;
+	}
+	public BigDecimal getBonus() {
+		return bonus;
+	}
+	public void setBonus(BigDecimal bonus) {
+		this.bonus = bonus;
 	} 
 	
 	

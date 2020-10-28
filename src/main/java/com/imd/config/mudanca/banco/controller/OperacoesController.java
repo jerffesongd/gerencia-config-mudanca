@@ -18,6 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.imd.config.mudanca.banco.command.OperacaoDeposito;
+
+import com.imd.config.mudanca.banco.command.OperacaoBonus;
+
 import com.imd.config.mudanca.banco.command.OperacaoDebito;
 import com.imd.config.mudanca.banco.command.OperacaoSaldo;
 import com.imd.config.mudanca.banco.command.OperacaoTransferencia;
@@ -147,7 +150,21 @@ public class OperacoesController {
 		return modelAndView;
 	}
 	
-	
+	@GetMapping("/bonus")
+	public ResponseEntity<String> getBonusConta() {
+		
+		try {
+			
+			Conta c = ((Conta) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+			BigDecimal bonus = bancoService.executarOperacao(c, null, null, new Date() , new OperacaoBonus());
+			
+			return new ResponseEntity<String>("R$ " + getSaldoFormatado(bonus), HttpStatus.OK);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	private String getSaldoFormatado(BigDecimal valor) {
 		return new DecimalFormat("#,###,##0.00").format(valor);
