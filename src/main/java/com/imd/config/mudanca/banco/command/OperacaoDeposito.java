@@ -9,7 +9,7 @@ import com.imd.config.mudanca.banco.domain.Conta;
 import com.imd.config.mudanca.banco.service.BancoService;
 
 @Component
-public class OperacaoCredito implements OperacaoCommand{
+public class OperacaoDeposito implements OperacaoCommand{
 
 	private BancoService bancoService = new BancoService();
 	
