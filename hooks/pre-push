@@ -1,0 +1,25 @@
+#!/bin/bash
+
+MSG="$(git show --format='%B' -s $SHA)"
+ower="jerffesongd"
+repo="gerencia-config-mudanca"
+isDoing=false
+
+numberIssue="$(echo $MSG | grep -o -E '[0-9]+')"
+
+url="https://api.github.com/repos/${ower}/${repo}/issues/${numberIssue}/labels"
+
+for l in $(curl POST $url | jq '.[].name')
+do
+    if [ ${l//\"/''} == "doing" ]; then
+        isDoing=true
+    fi
+
+done
+
+if [ "$isDoing" = false ]; then
+	echo "Issue não esta em DOING"
+    exit 1
+else
+    exit 0
+fi
