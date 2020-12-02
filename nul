@@ -1,9 +1,9 @@
 {
-  "url": "https://api.github.com/repos/jerffesongd/gerencia-config-mudanca/issues/comments/737275579",
-  "html_url": "https://github.com/jerffesongd/gerencia-config-mudanca/issues/19#issuecomment-737275579",
+  "url": "https://api.github.com/repos/jerffesongd/gerencia-config-mudanca/issues/comments/737275997",
+  "html_url": "https://github.com/jerffesongd/gerencia-config-mudanca/issues/19#issuecomment-737275997",
   "issue_url": "https://api.github.com/repos/jerffesongd/gerencia-config-mudanca/issues/19",
-  "id": 737275579,
-  "node_id": "MDEyOklzc3VlQ29tbWVudDczNzI3NTU3OQ==",
+  "id": 737275997,
+  "node_id": "MDEyOklzc3VlQ29tbWVudDczNzI3NTk5Nw==",
   "user": {
     "login": "jerffesongd",
     "id": 21064832,
@@ -24,9 +24,9 @@
     "type": "User",
     "site_admin": false
   },
-  "created_at": "2020-12-02T14:47:07Z",
-  "updated_at": "2020-12-02T14:47:07Z",
+  "created_at": "2020-12-02T14:47:48Z",
+  "updated_at": "2020-12-02T14:47:48Z",
   "author_association": "OWNER",
-  "body": "COMMENT",
+  "body": "qua dez 2 11:47:47 -03 2020 \nJerffeson Gomes \nTezte.txt nul \n#19 - Alterando conteudo arquivo",
   "performed_via_github_app": null
 }
