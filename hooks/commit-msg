@@ -9,7 +9,7 @@ isDoing=false
 if [[ $MSG =~ $PATTERN ]];then
         echo "[*] Comtém número de issue [*]"
 else
-        echo "Commit não possui número de issue!"
+        echo "Mensagem do commit NÂO possui número de issue!"
         exit 1
 fi
 
