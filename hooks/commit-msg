@@ -29,9 +29,9 @@ done
 
 
 if [ "$isDoing" = false ]; then
-	echo "Issue não esta em DOING"
+	echo "Issue NÂO esta em DOING"
     exit 1
 else
-    echo "Issue esta em DOING [*]"
+    echo "[*] Issue esta em DOING"
     exit 0
 fi
