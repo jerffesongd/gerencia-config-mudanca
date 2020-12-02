@@ -13,4 +13,4 @@ COMMENT="$COMMENT$(git diff --name-only HEAD HEAD~1) \n"
 COMMENT="$COMMENT$MSG"
 COMMENT="$(echo $COMMENT | tr -d '\n')"
 
-curl -s -o nul -X POST -H "Accept: application/vnd.github.v3+json " -H "Authorization: token 762376386538e1264a17fedca2dfdb91ff6cac9b" https://api.github.com/repos/${ower}/${repo}/issues/$numberIssue/comments --data "{ \"body\":\"$COMMENT\"}"
+curl -s -o nul -X POST -H "Accept: application/vnd.github.v3+json " -H "Authorization: token e8a0f7d2e458eaa38c03ce8dabdb7f8f9c34b6ad" https://api.github.com/repos/${ower}/${repo}/issues/$numberIssue/comments --data "{ \"body\":\"$COMMENT\"}"
